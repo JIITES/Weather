@@ -1,13 +1,11 @@
 import React from "react"
-import Weather from "./Component/weather"
+import Apps from "./Component/weather"
 
 function App() {
 
   return (
     <>
-    HeLlo guys
-
-    <Weather/>
+    <Apps/>
     </>
   )
 }

@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 
-const Weather = () => {
-  const [city, setCity] = useState('London') // default city
+const Apps = () => {
+  const [city, setCity] = useState('')
   const [weather, setWeather] = useState(null)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
@@ -10,32 +10,30 @@ const Weather = () => {
   const fetchWeather = async () => {
     if (!city) return
     setLoading(true)
+    const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY
+
     try {
-      const apiKey = import.meta.env.VITE_API_KEY
-      const response = await axios.get(
+      const res = await axios.get(
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
       )
-      setWeather(response.data)
+      setWeather(res.data)
       setError('')
     } catch (err) {
       setWeather(null)
       if (err.response?.status === 404) {
         setError('City not found.')
       } else {
-        setError('Something went wrong. Please try again.')
+        setError('Something went wrong.')
       }
     } finally {
       setLoading(false)
     }
   }
 
-  useEffect(() => {
-    fetchWeather()
-  }, []) // runs only once on load
-
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-800 to-purple-800 text-white p-6">
-      <h1 className="text-4xl font-bold mb-6">🌦️ Weather App</h1>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-700 to-purple-800 text-white p-6">
+      <h1 className="text-4xl font-bold mb-6">🌤️ Weather App</h1>
+
       <div className="flex gap-2 mb-4">
         <input
           type="text"
@@ -53,12 +51,12 @@ const Weather = () => {
         </button>
       </div>
 
-      {loading && <p className="text-yellow-300 mb-2">Loading...</p>}
-      {error && <p className="text-red-400 mb-2">{error}</p>}
+      {loading && <p className="text-yellow-300">Loading...</p>}
+      {error && <p className="text-red-400">{error}</p>}
 
       {weather && (
-        <div className="bg-white text-black p-6 rounded shadow-md mt-4 w-full max-w-md text-center">
-          <h2 className="text-2xl font-bold">{weather.name}</h2>
+        <div className="bg-white text-black p-6 rounded-lg shadow-md mt-4 w-full max-w-md text-center">
+          <h2 className="text-2xl font-bold mb-2">{weather.name}</h2>
           <img
             src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
             alt="Weather Icon"
@@ -74,4 +72,4 @@ const Weather = () => {
   )
 }
 
-export default Weather
+export default Apps
