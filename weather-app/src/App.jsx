@@ -1,5 +1,5 @@
 import React from "react"
-import Apps from "./Component/weather"
+import Apps from "./Component/Weather"
 
 function App() {
 
