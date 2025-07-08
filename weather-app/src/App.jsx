@@ -1,5 +1,5 @@
 import React from "react"
-import WeatherApp from "./Component/weather"
+import Weather from "./Component/weather"
 
 function App() {
 
@@ -7,7 +7,7 @@ function App() {
     <>
     HeLlo guys
 
-    <WeatherApp/>
+    <Weather/>
     </>
   )
 }
