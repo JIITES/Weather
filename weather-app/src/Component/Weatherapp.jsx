@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useState } from 'react'
 import axios from 'axios'
 
-const Apps = () => {
-  const [city, setCity] = useState('')
+const Weatherapp = () => {
+      const [city, setCity] = useState('')
   const [weather, setWeather] = useState(null)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
@@ -69,7 +70,9 @@ const Apps = () => {
         </div>
       )}
     </div>
+
+
   )
 }
 
-export default Apps
+export default Weatherapp
